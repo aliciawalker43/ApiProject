@@ -2,6 +2,7 @@ package GC.ApiProject;
 
 import java.util.List;
 
+
 import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -50,5 +51,11 @@ public class APIServiceController {
 		
 	}
 	
+	public List <Events> showDeets(String id) {
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, id);
+		return response.get_embedded().getEvents();
+		
+	}
 
 }

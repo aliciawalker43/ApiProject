@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,9 +42,17 @@ public class TicketController {
 		
 		List <Events> events = apiServ.showEvents(city);
 		model.addAttribute("events", events);
+		model.addAttribute("cityName", city);
 
 		return "filterResults";
 	}
 	
+	@RequestMapping("/detailResults/{id}")
+	public String showDetails(@PathVariable String id, Model model) {
+		List <Events> events = apiServ.showDeets(id);
+		model.addAttribute("events", events);
+		
+		return "detailResults";
+	}
 
 }

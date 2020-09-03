@@ -21,15 +21,16 @@
 	<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>City</th>
+					<th>Name</th><th>City</th><th>More Info</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="events" items="${events}">
 				<tr>
 					<td>${events.name}</td>
-					<td>${events.city}</td>
-
+					<td>${cityName}</td>
+					<td>${events.url}</td>
+					<td><a class="btn btn-secondary" href="/detailResults?id=${events.id}">See more Details</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

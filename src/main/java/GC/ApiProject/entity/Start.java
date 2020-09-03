@@ -6,20 +6,17 @@ import java.util.Date;
 
 public class Start {
 	
-	private String startDate;
-	private String endDate;
-	public String getStartDate() {
-		return startDate;
+	private LocalDate localDate;
+
+	public LocalDate getLocalDate() {
+		return localDate;
 	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+
+	public void setLocalDate(LocalDate localDate) {
+		this.localDate = localDate;
 	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
+	
+	
 	
 	
 	

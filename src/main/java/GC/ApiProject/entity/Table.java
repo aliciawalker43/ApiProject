@@ -16,7 +16,6 @@ public class Table {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Double city;
 	private LocalDate date;
 
 }

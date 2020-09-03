@@ -1,6 +1,10 @@
 package GC.ApiProject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,11 +37,19 @@ public class APIServiceController {
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
 	
-	public List<Events> showDates(LocalDate startDate, LocalDate endDate){
+	public List<Events> showDates(Date startDateTime, Date endDateTime){
 		
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={startDate}T01:00:00&endDateTime={endDate}T23:59:00&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+
+          //startDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+         // endDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+          String endDate = formatter.format(endDateTime); 
+          String strDate = formatter.format(startDateTime); 
+          System.out.println(strDate);
+	
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDateTime={strDate}T01:00:00Z&endDateTime={endDate}T23:59:00Z&apikey={apiKey}";
 		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDate, endDate);
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, strDate, endDate, apiKey);
 		events = response.get_embedded().getEvents();
 		return events;
 		
@@ -45,9 +57,9 @@ public class APIServiceController {
 	
 	public List<Events> showCity(String city){
 		
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey={apiKey}";
 		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, city);
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, city, apiKey);
 		events = response.get_embedded().getEvents();
 		return events;
 		
@@ -55,17 +67,17 @@ public class APIServiceController {
 	
 		public List<Events> showKeyword(String keyword){
 		
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword={keyword}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword={keyword}&apikey={apiKey}";
 		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, keyword);
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, keyword, apiKey);
 		events = response.get_embedded().getEvents();
 		return events;
 		
 	}
 	
 	public List <Events> showDeets(String id) {
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, id);
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey={apiKey}";
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, id, apiKey);
 		return response.get_embedded().getEvents();
 		
 	}

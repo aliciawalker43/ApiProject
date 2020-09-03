@@ -79,4 +79,22 @@ public class TicketController {
 		return "otherResults";
 	}
 
+      @RequestMapping("/bucketList")
+      public String addBucklist(@RequestParam String id, Model model) {
+    	  //find event by id
+    	  List <Events> events = apiServ.showDeets(id);
+  		//save to database id
+    	 
+  		model.addAttribute("events", events);
+  		Events event;
+  		
+  		for(int i=0; i<events.size(); i++ ) {
+  			 event= events.get(i);
+  		}
+  		
+  		System.out.println(event);
+    	  return"bucketList";
+      }
+	
+	
 }

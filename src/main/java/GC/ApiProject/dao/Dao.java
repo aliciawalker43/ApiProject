@@ -1,5 +1,10 @@
 package GC.ApiProject.dao;
 
-public class Dao {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import GC.ApiProject.entity.Table;
+
+public interface Dao extends JpaRepository <Table,Long> {
+	
 
 }

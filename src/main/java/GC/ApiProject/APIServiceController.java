@@ -37,7 +37,7 @@ public class APIServiceController {
 	public List<Events> showEvents(String city){
 		
 		//1. specify a URL
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}apikey={apiKey}";
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
 		List<Events> events;
 		//2. call the API, response type to match entire JSON
 		

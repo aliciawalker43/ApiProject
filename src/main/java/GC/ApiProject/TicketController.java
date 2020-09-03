@@ -1,9 +1,14 @@
 package GC.ApiProject;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import GC.ApiProject.dao.Dao;
+import GC.ApiProject.entity.Dates;
 import GC.ApiProject.entity.Events;
+import GC.ApiProject.entity.Table;
 
 @Controller
 public class TicketController {
@@ -59,9 +66,10 @@ public class TicketController {
 		return "detailResults";
 	}
 	
-	@PostMapping("/dateResults")
-	public String showDates(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate , Model model) {
-		List <Events> events = apiServ.showDates(startDate,endDate);
+	@RequestMapping("/dateResults")
+	public String showDates(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDateTime, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date endDateTime , Model model) {
+		
+		List <Events> events = apiServ.showDates(startDateTime,endDateTime);
 		
 		model.addAttribute("events", events);
 	
@@ -77,6 +85,35 @@ public class TicketController {
 	
 		
 		return "otherResults";
+	}
+	
+	@RequestMapping("/addbucket")
+	   public String addBucklist(@RequestParam String id, Model model) {
+		Events event = null;
+		//find event by id
+	  	 List <Events> events = apiServ.showDeets(id);
+	  	for(int i=0; i<events.size(); i++ ) {
+ 			 String name = events.get(i).getName();
+ 			 String info = events.get(i).getInfo();
+ 			 //Dates date = events.get(i).getDates();
+ 			 Table table = new Table();
+ 			 table.setName(name);
+ 			 table.setInfo(info);
+ 			 //table.setDate(date);
+ 			 dao.save(table);
+ 			 model.addAttribute("table", table);
+ 			 
+	  	}
+ 					 return "redirect:/bucketlist";
+	
+	}
+	
+	@RequestMapping("/bucketList")
+	   public String showBucket(Table table, Model model) {
+		 List <Table> tables = dao.findAll();
+		model.addAttribute("tables", tables);
+		
+			return "bucketList";
 	}
 
       @RequestMapping("/bucketList")

@@ -1,6 +1,10 @@
 package GC.ApiProject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,11 +37,25 @@ public class APIServiceController {
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
 	
-	public List<Events> showDates(LocalDate startDate, LocalDate endDate){
+	public List<Events> showDates(Date startDateTime, Date endDateTime){
 		
+
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={startDate}T01:00:00&endDateTime={endDate}T23:59:00&apikey={apiKey}";
 		List<Events> events;		
 		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDate, endDate,apiKey);
+
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+
+          //startDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+         // endDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+          String endDate = formatter.format(endDateTime); 
+          String strDate = formatter.format(startDateTime); 
+          System.out.println(strDate);
+	
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDateTime={strDate}T01:00:00Z&endDateTime={endDate}T23:59:00Z&apikey={apiKey}";
+		List<Events> events;		
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, strDate, endDate, apiKey);
+
 		events = response.get_embedded().getEvents();
 		return events;
 		
@@ -47,7 +65,9 @@ public class APIServiceController {
 		
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey={apiKey}";
 		List<Events> events;		
+
 		TicketResponse response = rt.getForObject(url, TicketResponse.class, city,apiKey);
+
 		events = response.get_embedded().getEvents();
 		return events;
 		
@@ -65,7 +85,9 @@ public class APIServiceController {
 	
 	public List <Events> showDeets(String id) {
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey={apiKey}";
+
 		TicketResponse response = rt.getForObject(url, TicketResponse.class, id,apiKey);
+
 		return response.get_embedded().getEvents();
 		
 	}
@@ -74,4 +96,5 @@ public class APIServiceController {
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey={apiKey}";
 		TicketResponse response = rt.getForObject(url, TicketResponse.class, id,apiKey);
 		return response.get_embedded().getEvents();
+ }
 }

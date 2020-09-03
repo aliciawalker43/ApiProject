@@ -25,22 +25,22 @@
 		<form class="form-inline" action="/cityResults">
 			<div class="form-group mx-sm-3 mb-2">
 				<label class="sr-only">Enter a City</label> 
-				<input type="text" name="city" placeholder=detroit >
+				<input type="text" name="city" placeholder=city >
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Find the event</button>
 		</form>
 		<form class="form-inline" action="/dateResults">
 			<div class="form-group mx-sm-3 mb-2">
 				<label class="sr-only">Enter a Date</label> 
-				<input type="date" name="startDate" >
-				<input type="date" name="endDate" >
+				<input type="date" name="startDateTime" >
+				<input type="date" name="endDateTime" >
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Find the event</button>
 		</form>
 		<form class="form-inline" action="/keywordResults">
 			<div class="form-group mx-sm-3 mb-2">
 				<label class="sr-only">Enter a Keyword</label> 
-				<input type="text" name="keyword" placeholder=detroit >
+				<input type="text" name="keyword" placeholder=keyword >
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Find the event</button>
 		</form>

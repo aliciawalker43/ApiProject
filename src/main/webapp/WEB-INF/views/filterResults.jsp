@@ -21,7 +21,7 @@
 	<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>City</th><th>More Info</th>
+					<th>Name</th><th>City</th><th>Event Link<th>More Info</th>
 				</tr>
 			</thead>
 			<tbody>

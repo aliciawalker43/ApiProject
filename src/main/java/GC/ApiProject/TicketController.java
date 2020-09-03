@@ -48,8 +48,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/detailResults/{id}")
-	public String showDetails(@PathVariable String id, Model model) {
-		List <Events> events = apiServ.showDeets(id);
+	public String showDetails(@PathVariable String id, Events events, Model model) {
 		model.addAttribute("events", events);
 		
 		return "detailResults";

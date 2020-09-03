@@ -21,14 +21,13 @@
 	<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>City</th><th>Event Link<th>More Info</th>
+					<th>Name</th><th>Event Link<th>More Info</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="events" items="${events}">
 				<tr>
 					<td>${events.name}</td>
-					<td>${cityName}</td>
 					<td>${events.url}</td>
 					<td><a class="btn btn-secondary" href="/detailResults?id=${events.id}">See more Details</a></td>
 					<td><a class="btn btn-secondary" href="/bucketList?id=${events.id}">Add To Bucket List</a></td>

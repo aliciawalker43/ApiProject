@@ -1,5 +1,6 @@
 package GC.ApiProject;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -24,9 +25,6 @@ public class APIServiceController {
 	
 	
 	private RestTemplate rt;
-	// ADD DECK_ID value
-	// initialization block that runs when a new instance of the class is created
-	// loaded before the constructor
 	{
 		ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
 			request.getHeaders().add(HttpHeaders.USER_AGENT,"");
@@ -35,18 +33,32 @@ public class APIServiceController {
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
 	
-	public List<Events> showEvents(String city){
+	public List<Events> showDates(LocalDate startDate, LocalDate endDate){
 		
-		//1. specify a URL
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
-		List<Events> events;
-		//2. call the API, response type to match entire JSON
-		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, city);
-		
-		//return certain parts of JSON response;
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={startDate}T01:00:00&endDateTime={endDate}T23:59:00&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		List<Events> events;		
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDate, endDate);
 		events = response.get_embedded().getEvents();
-		//return weather.getData();
+		return events;
+		
+	}
+	
+	public List<Events> showCity(String city){
+		
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?city={city}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		List<Events> events;		
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, city);
+		events = response.get_embedded().getEvents();
+		return events;
+		
+	}
+	
+		public List<Events> showKeyword(String keyword){
+		
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword={keyword}&apikey=HvnyqZUb8UMvcAAO2UkIiVBTQIhMEWPT";
+		List<Events> events;		
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, keyword);
+		events = response.get_embedded().getEvents();
 		return events;
 		
 	}

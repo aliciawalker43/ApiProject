@@ -18,10 +18,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tables" items="${tables}">
+				<c:forEach var="bucketList" items="${bucketList}">
 				<tr>
-					<td>${tables.name}</td>
-				    <td>${tables.info }</td>
+					<td>${bucketList.name}</td>
+				    <td>${bucketList.info }</td>
 				</tr>
 				</c:forEach>
 			</tbody>

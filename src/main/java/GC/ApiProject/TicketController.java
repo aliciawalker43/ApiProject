@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import GC.ApiProject.dao.Dao;
 import GC.ApiProject.entity.Dates;
 import GC.ApiProject.entity.Events;
-import GC.ApiProject.entity.Table;
+import GC.ApiProject.entity.BucketList;
 
 @Controller
 public class TicketController {
@@ -47,7 +47,7 @@ public class TicketController {
 
 	
 	@RequestMapping("/cityResults")
-	public String showEvents(@RequestParam String city,Model model) {
+	public String showEvents(@RequestParam("city")String city,Model model) {
 		
 		List <Events> events = apiServ.showCity(city);
 		model.addAttribute("events", events);
@@ -57,7 +57,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/detailResults")
-	public String showDetails(@RequestParam String id, Model model) {
+	public String showDetails(@RequestParam("id")  String id, Model model) {
 		List <Events> events = apiServ.showDeets(id);
 		
 		model.addAttribute("events", events);
@@ -78,7 +78,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/keywordResults")
-	public String showKeyword(@RequestParam String keyword , Model model) {
+	public String showKeyword(@RequestParam ("keyword") String keyword , Model model) {
 		List <Events> events = apiServ.showKeyword(keyword);
 		
 		model.addAttribute("events", events);
@@ -87,33 +87,36 @@ public class TicketController {
 		return "otherResults";
 	}
 	
-	@RequestMapping("/addbucket")
-	   public String addBucklist(@RequestParam String id, Model model) {
-		Events event = null;
+	@RequestMapping("/addBucket")
+	   public String addBucklist(@RequestParam("id") String id, Model model) {
+	
 		//find event by id
 	  	 List <Events> events = apiServ.showDeets(id);
 	  	for(int i=0; i<events.size(); i++ ) {
  			 String name = events.get(i).getName();
  			 String info = events.get(i).getInfo();
  			 //Dates date = events.get(i).getDates();
- 			 Table table = new Table();
- 			 table.setName(name);
- 			 table.setInfo(info);
+ 			 BucketList bucketList = new BucketList();
+ 			 bucketList.setName(name);
+ 			 bucketList.setInfo(info);
+ 			 bucketList.setId(id);
  			 //table.setDate(date);
- 			 dao.save(table);
- 			 model.addAttribute("table", table);
+ 			 dao.save(bucketList);
+ 			 model.addAttribute("bucketList", bucketList);
  			 
 	  	}
- 					 return "redirect:/bucketlist";
-	
+ 					 return "redirect:/detailResults";
+ 	
 	}
 	
 	@RequestMapping("/bucketList")
-	   public String showBucket(Table table, Model model) {
-		 List <Table> tables = dao.findAll();
-		model.addAttribute("tables", tables);
+	   public String showBucket(BucketList bucketLists, Model model) {
+		List <BucketList> bucketList = dao.findAll();
+		model.addAttribute("bucketList", bucketList);
 		
 			return "bucketList";
 	}
 
-}
+
+	}
+

@@ -25,7 +25,7 @@
 	<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>Event Link<th>More Info</th>
+					<th>Name</th><th>Event Link<th>More Info</th><th>Add to Bucket List</th>
 				</tr>
 			</thead>
 			<tbody>

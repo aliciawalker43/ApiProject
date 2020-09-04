@@ -11,42 +11,24 @@
 </head>
 <body>
 <table class="table">
-			<thead>
-				<tr>
-					<th>BUCKLIST</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="events" items="${events}">
-				<tr>
-					<td>${events.name}</td>
-				    <td>${events.url}</td>
-
-<<<<<<< HEAD
-				</tr>
-				<tr>
-				     <td>${events.info }</td>
-=======
-<table class="table">
+	
 			<thead>
 				<tr>
 					<th>Name</th><th>Info</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tables" items="${tables}">
+				<c:forEach var="bucketList" items="${bucketList}">
 				<tr>
+
 					<td>${tables.name}</td>
 				    <td>${tables.info }</td>
->>>>>>> ebe7549951dd09d82adb5869566cd528af7e557b
-				</tr>
+             </tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-<<<<<<< HEAD
-=======
 
->>>>>>> ebe7549951dd09d82adb5869566cd528af7e557b
+
 </body>
 </html>

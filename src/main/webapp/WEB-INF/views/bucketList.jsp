@@ -10,6 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< 
+<div class = "navbar navbar-expand">
+
+	<ul class = "navbar-nav" id = "list">
+		<li class = "nav-item"><a class = "nav-link" href="index">New Search</a></li>
+	</ul>
+</div>
+
+
 <table class="table">
 	
 			<thead>
@@ -21,9 +30,16 @@
 				<c:forEach var="bucketList" items="${bucketList}">
 				<tr>
 
+
 					<td>${tables.name}</td>
 				    <td>${tables.info }</td>
              </tr>
+
+					<td>${bucketList.name}</td>
+				    <td>${bucketList.info }</td>
+				    <td><a href="<c:url value="/deleteBucket/${events.tableId}/delete"/>" class="btn btn-dark">Delete</a></td>
+				</tr>
+
 				</c:forEach>
 			</tbody>
 		</table>

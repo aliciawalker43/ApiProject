@@ -42,7 +42,7 @@ public class APIServiceController {
 
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={startDate}T01:00:00&endDateTime={endDate}T23:59:00&apikey={apiKey}";
 		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDate, endDate,apiKey);
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDateTime, endDateTime,apiKey);
 
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 
@@ -52,10 +52,6 @@ public class APIServiceController {
           String strDate = formatter.format(startDateTime); 
           System.out.println(strDate);
 	
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDateTime={strDate}T01:00:00Z&endDateTime={endDate}T23:59:00Z&apikey={apiKey}";
-		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, strDate, endDate, apiKey);
-
 		events = response.get_embedded().getEvents();
 		return events;
 		
@@ -92,7 +88,7 @@ public class APIServiceController {
 		
 	}
 
-	public Events showOneDeets(String id) {
+	public List <Events> showOneDeets(String id) {
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id={id}&apikey={apiKey}";
 		TicketResponse response = rt.getForObject(url, TicketResponse.class, id,apiKey);
 		return response.get_embedded().getEvents();

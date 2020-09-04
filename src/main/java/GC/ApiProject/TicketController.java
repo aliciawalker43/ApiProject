@@ -74,7 +74,7 @@ public class TicketController {
 		model.addAttribute("events", events);
 	
 		
-		return "otherResults";
+		return "filterResults";
 	}
 	
 	@RequestMapping("/keywordResults")
@@ -84,7 +84,7 @@ public class TicketController {
 		model.addAttribute("events", events);
 	
 		
-		return "otherResults";
+		return "filterResults";
 	}
 	
 	@RequestMapping("/addBucket")
@@ -104,8 +104,8 @@ public class TicketController {
  			 dao.save(bucketList);
  			 model.addAttribute("bucketList", bucketList);
  			 
-	  	}
- 					 return "redirect:/detailResults";
+	  	} return "otherResults";
+ 					 
  	
 	}
 	
@@ -116,7 +116,14 @@ public class TicketController {
 		
 			return "bucketList";
 	}
-
+	@RequestMapping("/deleteBucket/{id}/delete")
+	public String deleteBucket(@PathVariable("id")Long id) {
+		
+		
+		dao.deleteById(id);
+		
+		return "redirect:/bucketList";
+	}
 
 	}
 

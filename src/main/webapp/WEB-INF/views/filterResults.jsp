@@ -18,18 +18,21 @@
 
 </head>
 <body>
+<ul class = "navbar-nav" id = "list">
+		<li class = "nav-item"><a class = "nav-link" href="index">New Search</a></li>
+		<li class = "nav-item"><a class = "nav-link" href="bucketList">Check Bucket List</a></li>
+	</ul>
 	<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>City</th><th>Event Link<th>More Info</th>
+					<th>Name</th><th>Event Link<th>More Info</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="events" items="${events}">
 				<tr>
 					<td>${events.name}</td>
-					<td>${cityName}</td>
-					<td>${events.url}</td>
+					<td><a class="btn btn-secondary" href="${events.url}">Check out TicketMaster</a></td>
 					<td><a class="btn btn-secondary" href="/detailResults?id=${events.id}">See more Details</a></td>
 					<td><a class="btn btn-secondary" href="/addBucket?id=${events.id}">Add To Bucket List</a></td>
 				</tr>

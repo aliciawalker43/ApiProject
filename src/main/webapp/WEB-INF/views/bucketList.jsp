@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< 
+
 <div class = "navbar navbar-expand">
 
 	<ul class = "navbar-nav" id = "list">
@@ -45,6 +45,6 @@
 		</table>
 	</div>
 
-
+                            <a href="/"> Return Home</a>
 </body>
 </html>

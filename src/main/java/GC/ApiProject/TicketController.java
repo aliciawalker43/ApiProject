@@ -99,7 +99,7 @@ public class TicketController {
  			 BucketList bucketList = new BucketList();
  			 bucketList.setName(name);
  			 bucketList.setInfo(info);
- 			 bucketList.setId(id);
+ 			 bucketList.setId(id);// show be set to event id - not long id
  			 //table.setDate(date);
  			 dao.save(bucketList);
  			 model.addAttribute("bucketList", bucketList);

@@ -21,6 +21,7 @@
 <ul class = "navbar-nav" id = "list">
 		<li class = "nav-item"><a class = "nav-link" href="index">New Search</a></li>
 		<li class = "nav-item"><a class = "nav-link" href="bucketList">Check Bucket List</a></li>
+	    <li class = "nav-item"><a class = "nav-link" href="/"> Return Home</a></li>	
 	</ul>
 	<table class="table">
 			<thead>

@@ -25,7 +25,21 @@
 		<form class="form-inline" action="/cityResults">
 			<div class="form-group mx-sm-3 mb-2">
 				<label class="sr-only">Enter a City</label> 
-				<input type="text" name="city" placeholder=city >
+				<select name= "city">
+				<!-- <input type="text" name="city" placeholder=city >-->
+				<option value= "Detroit" name="city">Detroit</option>
+				<option value= "Chicago" name="city">Chicago</option>
+				<option value= "Philediphia" name="city">Philediphia</option>
+				<option value= "New York City" name="city">New York City</option>
+				<option value= "Cleveland" name="city">Chicago</Cleveland>
+				<option value= "Miami" name="city">Miami</option>
+				<option value= "Toronto" name="city">Toronto</option>
+				<option value= "Houston" name="city">Houston</option>
+				<option value= "Las Vegas" name="city">Las Vegas</option>
+				<option value= "Atlanta" name="city">Atlanta</option>
+				<option value= "Pheonix" name="city">Pheonix</Cleveland>
+				<option value= "Orlando" name="city">Orlando</option>
+				</select>
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Find the event</button>
 		</form>

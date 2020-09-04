@@ -39,18 +39,19 @@ public class APIServiceController {
 	
 	public List<Events> showDates(Date startDateTime, Date endDateTime){
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={startDate}T01:00:00&endDateTime={endDate}T23:59:00&apikey={apiKey}";
+        //startDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+       // endDateTime = new SimpleDateFormat("yyyy-mm-dd");  
+        String endDate = formatter.format(endDateTime); 
+        String strDate = formatter.format(startDateTime); 
+
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?startDatetime={strDate}T01:00:00Z&endDateTime={endDate}T23:59:00Z&apikey={apiKey}";
 		List<Events> events;		
-		TicketResponse response = rt.getForObject(url, TicketResponse.class, startDateTime, endDateTime,apiKey);
+		TicketResponse response = rt.getForObject(url, TicketResponse.class, strDate, endDate,apiKey);
 
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
-
-          //startDateTime = new SimpleDateFormat("yyyy-mm-dd");  
-         // endDateTime = new SimpleDateFormat("yyyy-mm-dd");  
-          String endDate = formatter.format(endDateTime); 
-          String strDate = formatter.format(startDateTime); 
-          System.out.println(strDate);
+	
+         
 	
 		events = response.get_embedded().getEvents();
 		return events;
